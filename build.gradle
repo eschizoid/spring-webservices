@@ -1,0 +1,69 @@
+plugins {
+	id 'org.springframework.boot' version '3.1.3'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main/java'
+			srcDir 'build/generated-sources/jaxb'
+		}
+	}
+}
+
+tasks.register('genJaxb') {
+	ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
+	ext.schema = "src/main/resources/countries.xsd"
+
+	outputs.dir sourcesDir
+
+	doLast() {
+		project.ant {
+			taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
+					classpath: configurations.jaxb.asPath
+			mkdir(dir: sourcesDir)
+
+			xjc(destdir: sourcesDir, schema: schema) {
+				arg(value: "-wsdl")
+				produces(dir: sourcesDir, includes: "**/*.java")
+			}
+		}
+	}
+}
+
+compileJava.dependsOn genJaxb
+
+configurations {
+	jaxb
+}
+
+tasks.withType(Test) {
+	useJUnitPlatform()
+//    jvmArgs '--enable-preview' -- with or without makes no much difference
+
+}
+
+bootJar {
+	archiveBaseName = 'gs-producing-web-service'
+	archiveVersion =  '0.1.0'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+	implementation 'wsdl4j:wsdl4j'
+	implementation 'org.jetbrains:annotations:24.0.0'
+	jaxb('org.glassfish.jaxb:jaxb-xjc:4.0.2')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
