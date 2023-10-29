@@ -1,6 +1,10 @@
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://spring.io/guides/gs-producing-web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://spring.io/guides/gs-producing-web-service" targetNamespace="http://spring.io/guides/gs-producing-web-service">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://spring.io/spring-webservices"
+                  targetNamespace="http://spring.io/spring-webservices">
     <wsdl:types>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://spring.io/guides/gs-producing-web-service">
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                   targetNamespace="http://spring.io/spring-webservices">
             <xs:element name="getCountryRequest">
                 <xs:complexType>
                     <xs:sequence>
@@ -34,15 +38,15 @@
         </xs:schema>
     </wsdl:types>
     <wsdl:message name="getCountryResponse">
-        <wsdl:part element="tns:getCountryResponse" name="getCountryResponse"> </wsdl:part>
+        <wsdl:part element="tns:getCountryResponse" name="getCountryResponse"/>
     </wsdl:message>
     <wsdl:message name="getCountryRequest">
-        <wsdl:part element="tns:getCountryRequest" name="getCountryRequest"> </wsdl:part>
+        <wsdl:part element="tns:getCountryRequest" name="getCountryRequest"/>
     </wsdl:message>
     <wsdl:portType name="CountriesPort">
         <wsdl:operation name="getCountry">
-            <wsdl:input message="tns:getCountryRequest" name="getCountryRequest"> </wsdl:input>
-            <wsdl:output message="tns:getCountryResponse" name="getCountryResponse"> </wsdl:output>
+            <wsdl:input message="tns:getCountryRequest" name="getCountryRequest"/>
+            <wsdl:output message="tns:getCountryResponse" name="getCountryResponse"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="CountriesPortSoap11" type="tns:CountriesPort">

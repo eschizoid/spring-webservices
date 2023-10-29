@@ -1,6 +1,6 @@
 package com.example.producingwebservice.config;
 
-import io.spring.guides.gs_producing_web_service.GetCountryRequest;
+import io.spring.spring_webservices.GetCountryRequest;
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;

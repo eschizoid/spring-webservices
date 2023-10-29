@@ -1,7 +1,7 @@
 package com.example.producingwebservice;
 
 import com.example.producingwebservice.client.WebServiceClient;
-import io.spring.guides.gs_producing_web_service.Currency;
+import io.spring.spring_webservices.Currency;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.example.producingwebservice.client;
 
-import io.spring.guides.gs_producing_web_service.Country;
-import io.spring.guides.gs_producing_web_service.GetCountryResponse;
-import io.spring.guides.gs_producing_web_service.ObjectFactory;
+import io.spring.spring_webservices.Country;
+import io.spring.spring_webservices.GetCountryResponse;
+import io.spring.spring_webservices.ObjectFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
