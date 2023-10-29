@@ -36,18 +36,19 @@ openssl pkcs12 \
 ## Sample curl command
 
 ```bash
-curl <<-EOF --insecure -fsSL -H "content-type: text/xml" -d @- https://localhost:8443/ws \
-  > target/response.xml && xmllint --format target/response.xml
-
+curl <<-EOF \
+  --insecure \
+  -H "content-type: text/xml" \
+  -d @- https://localhost:8443/ws >! response.xml \
+  && xmllint --format response.xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                                  xmlns:gs="http://spring.io/spring-webservices">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <gs:getCountryRequest>
-         <gs:name>Spain</gs:name>
-      </gs:getCountryRequest>
-   </soapenv:Body>
+                  xmlns:gs="http://spring.io/spring-webservices">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getCountryRequest>
+            <gs:name>Spain</gs:name>
+        </gs:getCountryRequest>
+    </soapenv:Body>
 </soapenv:Envelope>
-
 EOF
 ```

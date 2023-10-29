@@ -1,45 +1,25 @@
-#spring:
-#  ssl:
-#    bundle:
-#      jks:
-#        web-server:
-#          key:
-#            alias: "secure-server"
-#          keystore:
-#            location: "classpath:keystore.p12"
-#            password: "changeit"
-#            type: "PKCS12"
-#server:
-#  port: 8443
-#  ssl:
-#    bundle: "web-server"
-#    client-auth: NEED
-#    enabled: true
-#
-#
-##server:
-##  port: 8443
-##  ssl:
-##    key-store: classpath:keystore.p12
-##    key-store-password: changeit
-##    key-alias: secure-server
-##    key-password: changeit
-#
-#client:
-#  default-uri: https://localhost:8443/ws
-#  ssl:
-#    trust-store: classpath:keystore.p12
-#    trust-store-password: changeit
-client:
-  default-uri: https://localhost:8443/ws/
+spring:
   ssl:
-    trust-store: classpath:jks/client-truststore.jks
-    trust-store-password: client-truststore-p455w0rd
+    bundle:
+      jks:
+        web-server:
+          key:
+            alias: "server-keypair"
+            password: "server-key-p455w0rd"
+          keystore:
+            location: "classpath:jks/server-keystore.jks"
+            password: "server-keystore-p455w0rd"
+            type: "JKS"
+          truststore:
+            location: "classpath:jks/client-truststore.jks"
+            password: "client-truststore-p455w0rd"
+            type: "JKS"
 
 server:
   port: 8443
   ssl:
-    key-store: classpath:jks/server-keystore.jks
-    key-store-password: server-keystore-p455w0rd
-    key-alias: server-keypair
-    key-password: server-key-p455w0rd
+    bundle: "web-server"
+    enabled: true
+
+client:
+  default-uri: https://localhost:8443/ws/
